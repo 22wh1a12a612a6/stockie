@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Stock Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #aaa;
+            padding: 8px;
+            text-align: center;
+        }
+        h2 {
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Stock Price Prediction</h1>
+
+    <!-- Upload Form -->
+    <form action="/prediction" method="POST" enctype="multipart/form-data">
+        <input type="file" name="file" accept=".csv" required>
+        <button type="submit">Upload and Predict</button>
+    </form>
+    <hr>
+
+    <!-- Show Prediction Info if available -->
+    {% if close %}
+    <h2>Latest Stock Info</h2>
+    <ul>
+        <li><strong>Close:</strong> {{ close | round(2) }}</li>
+        <li><strong>Previous Close:</strong> {{ prev_close | round(2) }}</li>
+        <li><strong>Open Price:</strong> {{ open_price | round(2) }}</li>
+        <li><strong>Day's Low:</strong> {{ low | round(2) }}</li>
+        <li><strong>Day's High:</strong> {{ high | round(2) }}</li>
+        <li><strong>52-Week Low:</strong> {{ week52_low | round(2) }}</li>
+        <li><strong>52-Week High:</strong> {{ week52_high | round(2) }}</li>
+        <li><strong>Predicted Low:</strong> {{ prediction_low | round(2) }}</li>
+        <li><strong>Predicted High:</strong> {{ prediction_high | round(2) }}</li>
+        <li><strong>Reversal Point:</strong> {{ reversal | round(2) }}</li>
+        <li><strong>Prediction Accuracy:</strong> {{ accuracy }}%</li>
+    </ul>
+    {% endif %}
+
+    <!-- Show DataFrame Table -->
+    {% if df %}
+    <h2>Uploaded Data (Last Few Entries)</h2>
+    <table>
+        <thead>
+            <tr>
+                {% for key in df[0].keys() %}
+                <th>{{ key }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in df[-10:] %}
+            <tr>
+                {% for val in row.values() %}
+                <td>{{ val }}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Data Analysis</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #e0f7fa, #f9fbe7);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      padding: 20px;
+      background-color: rgba(0, 0, 0, 0.05);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .navbar a {
+      text-decoration: none;
+      color: #ffffff;
+      padding: 12px 24px;
+      border-radius: 12px;
+      font-weight: 500;
+      transition: transform 0.2s ease, background 0.3s ease;
+    }
+
+    .navbar a.home {
+      background: rgba(77, 133, 239, 0.3);
+      border: 1px solid rgb(0, 140, 255);
+    }
+
+    .navbar a.prediction {
+      background: rgba(255, 251, 0, 0.2);
+      border: 1px solid rgba(255, 251, 0, 0.6);
+    }
+
+    .navbar a.news {
+      background: rgba(232, 169, 200, 0.4);
+      border: 1px solid rgba(232, 169, 200, 0.8);
+    }
+
+    .navbar a:hover {
+      transform: scale(1.05);
+    }
+
+    .content {
+      flex: 1;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .content h1 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .placeholder {
+      background: white;
+      border-radius: 16px;
+      padding: 40px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      max-width: 800px;
+      margin: auto;
+    }
+
+    .logout {
+      text-align: center;
+      padding: 20px;
+    }
+
+    .logout a {
+      text-decoration: none;
+      color: white;
+      background-color: #f44336;
+      padding: 12px 24px;
+      border-radius: 10px;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    .logout a:hover {
+      background-color: #d32f2f;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="navbar">
+    <a href="/" class="home">Home</a>
+    <a href="/prediction" class="prediction">Prediction</a>
+    <a href="/market_news" class="news">Market News</a>
+  </div>
+
+  <div class="content">
+    <h1>Data Analysis</h1>
+    <div class="placeholder">
+      <p>Here you will find historical stock data insights.</p>
+      <p><em>(We will add graphs and reports here soon!)</em></p>
+    </div>
+  </div>
+
+  <div class="logout">
+    <a href="/logout">Logout</a>
+  </div>
+
+</body>
+</html>

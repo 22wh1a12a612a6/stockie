@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Stokie – Welcome</title>
+  <style>
+    html, body {
+      margin: 0; padding: 0;
+      width: 100%; height: 100%;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #e0f7fa, #f9fbe7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      transition: background 0.5s ease;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.2);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .features {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 64px;
+      text-align: center;
+      padding: 0 40px;
+    }
+
+    .feature {
+      width: 120px; height: 120px;
+      border-radius: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: transform .2s, box-shadow .2s;
+      cursor: pointer;
+    }
+
+    .feature.analysis {
+      background: rgba(77, 133, 239, 0.3);
+      border: 1px solid rgb(0, 140, 255);
+    }
+
+    .feature.prediction {
+      background: rgba(255, 251, 0, 0.2);
+      border: 1px solid rgba(255, 251, 0, 0.6);
+    }
+
+    .feature.market-news {
+      background: rgba(232, 169, 200, 0.4); /* Darker */
+      border: 1px solid rgba(232, 169, 200, 0.8); /* Darker */
+    }
+
+    .feature:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
+    }
+
+    .feature img {
+      width: 48px; height: 48px;
+      margin-bottom: 8px;
+      filter: drop-shadow(0 0 4px rgba(255,255,255,0.7));
+    }
+
+    .feature span {
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    @media (max-width: 768px) {
+      .features {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="overlay"></div>
+
+  <div class="features">
+    <div class="feature analysis" 
+         onmouseover="changeBackground('blue')" 
+         onmouseout="resetBackground()" 
+         onclick="goToPage('/analysis')">
+      <img src="{{ url_for('static', filename='css/Analysis.png') }}" alt="">
+      <span>Analysis</span>
+    </div>
+
+    <div class="feature prediction" 
+         onmouseover="changeBackground('yellow')" 
+         onmouseout="resetBackground()" 
+         onclick="goToPage('/prediction')">
+      <img src="{{ url_for('static', filename='css/prediction.png') }}" alt="">
+      <span>Prediction</span>
+    </div>
+
+    <div class="feature market-news" 
+         onmouseover="changeBackground('pink')" 
+         onmouseout="resetBackground()" 
+         onclick="goToPage('/market_news')">
+      <img src="{{ url_for('static', filename='css/news.png') }}" alt="">
+      <span>Market News</span>
+    </div>
+  </div>
+
+  <script>
+    let originalBackground = document.body.style.background;
+
+    function changeBackground(color) {
+      if (color === 'blue') {
+        document.body.style.background = 'linear-gradient(135deg, #4D85EF, #4D85EF)';
+      } else if (color === 'yellow') {
+        document.body.style.background = 'linear-gradient(135deg, #FFF700, #FFF700)';
+      } else if (color === 'pink') {
+        document.body.style.background = 'linear-gradient(135deg, #E8A9C8, #E8A9C8)';
+      }
+    }
+
+    function resetBackground() {
+      document.body.style.background = originalBackground || 'linear-gradient(135deg, #e0f7fa, #f9fbe7)';
+    }
+
+    function goToPage(url) {
+      setTimeout(function() {
+        window.location.href = url;
+      }, 300);
+    }
+  </script>
+
+</body>
+</html>
